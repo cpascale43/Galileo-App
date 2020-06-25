@@ -1,25 +1,42 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 interface NewTodoProps {
-    onAddTodo: (todoText: string) => void
+  //   onAddTodo: (todoText: string) => void;
+  getDoctors: (todoText: string) => Promise<any>;
 }
 
-const NewTodo: React.FC<NewTodoProps> = props => {
+const NewTodo: React.FC<NewTodoProps> = (props) => {
+  const [error, setError] = useState(false);
   const textInputRef = useRef<HTMLInputElement>(null);
 
   const onSubmitHandler = (event: React.FormEvent) => {
     event.preventDefault();
     const enteredText = textInputRef.current!.value;
-    props.onAddTodo(enteredText)
+    if (enteredText === "") {
+      setError(true);
+      return;
+    }
+    props.getDoctors(enteredText);
   };
 
   return (
-    <form onSubmit={onSubmitHandler}>
-      <div>
-        <label htmlFor="todo-text">Todo Text</label>
-        <input type="text" id="todo-text" ref={textInputRef} />
+    <form
+      className='pb-3'
+      onSubmit={onSubmitHandler}
+    >
+      <div className="form-group">
+        <label htmlFor="todo-text">Find a Provider</label>
+        <input
+          className="form-control"
+          type="text"
+          id="todo-text"
+          aria-describedby="searchProviders"
+          ref={textInputRef}
+        />
       </div>
-      <button type="submit">ADD TODO</button>
+      <button className="btn btn-primary btn-block" type="submit">
+        Search by provider name
+      </button>
     </form>
   );
 };

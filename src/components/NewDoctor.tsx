@@ -1,23 +1,18 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 
-interface NewTodoProps {
-  //   onAddTodo: (todoText: string) => void;
+interface NewDoctorProps {
   getDoctors: (todoText: string) => void;
-  // onCount: () => void;
 }
 
-const NewTodo: React.FC<NewTodoProps> = (props) => {
-  const [error, setError] = useState(false);
+const NewDoctor: React.FC<NewDoctorProps> = (props) => {
   const textInputRef = useRef<HTMLInputElement>(null);
 
   const onSubmitHandler = (event: React.FormEvent) => {
     event.preventDefault();
     const enteredText = textInputRef.current!.value;
     if (enteredText === "") {
-      setError(true);
       return;
     }
-    // props.onCount();
     props.getDoctors(enteredText);
   };
 
@@ -43,4 +38,4 @@ const NewTodo: React.FC<NewTodoProps> = (props) => {
   );
 };
 
-export default NewTodo;
+export default NewDoctor;

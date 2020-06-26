@@ -24,6 +24,17 @@ const DoctorList: React.FC<DoctorListProps> = (props) => {
         <li className="list-group-item" key={doc.doctor_id}>
           <div className="row">
             <div className="col">
+              <img
+                className="pic"
+                src={
+                  "https://storage.googleapis.com/hatchways-app.appspot.com/assessments/data/frontend/images/voluptasdictablanditiis.jpg"
+                }
+                alt={doc.first_name}
+                width="150"
+                height="150"
+              />
+            </div>
+            <div className="col">
               <span>
                 {doc.first_name} {doc.last_name}
               </span>
@@ -37,7 +48,7 @@ const DoctorList: React.FC<DoctorListProps> = (props) => {
               <span>Date of Birth: {doc.dob}</span>
             </div>
           </div>
-          <DoctorTasks id={doc.doctor_id} />
+          <DoctorTasks todos={props.todos} id={doc.doctor_id} />
         </li>
       ))}
     </ul>

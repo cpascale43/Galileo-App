@@ -38,6 +38,8 @@ function App() {
     );
 
     setDoctors([...new Set(doctors.concat(docsArr))]);
+    console.log(doctors)
+    console.log(taskData)
   }
 
   // const todoDeleteHandler = (todoId: string) => {

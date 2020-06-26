@@ -1,6 +1,8 @@
 import React from "react";
 
 import DoctorTasks from "./DoctorTasks";
+const img =
+  "https://storage.googleapis.com/hatchways-app.appspot.com/assessments/data/frontend/images/voluptasdictablanditiis.jpg";
 
 interface DoctorListProps {
   providers: {
@@ -23,32 +25,24 @@ const DoctorList: React.FC<DoctorListProps> = (props) => {
       {props.providers.map((doc) => (
         <li className="list-group-item" key={doc.doctor_id}>
           <div className="row">
-            <div className="col">
+            <div className="col-3">
               <img
                 className="pic"
-                src={
-                  "https://storage.googleapis.com/hatchways-app.appspot.com/assessments/data/frontend/images/voluptasdictablanditiis.jpg"
-                }
+                src={img}
                 alt={doc.first_name}
                 width="150"
                 height="150"
               />
             </div>
             <div className="col">
-              <span>
+              <h1 className="student-name">
                 {doc.first_name} {doc.last_name}
-              </span>
+              </h1>
+              <p>Degree: {doc.degree}</p>
+              <p>Date of Birth: {doc.dob}</p>
+              <DoctorTasks todos={props.todos} id={doc.doctor_id} />
             </div>
           </div>
-          <div className="row">
-            <div className="col-2">
-              <span>Degree: {doc.degree}</span>
-            </div>
-            <div className="col">
-              <span>Date of Birth: {doc.dob}</span>
-            </div>
-          </div>
-          <DoctorTasks todos={props.todos} id={doc.doctor_id} />
         </li>
       ))}
     </ul>

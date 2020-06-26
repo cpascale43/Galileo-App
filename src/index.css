@@ -44,3 +44,18 @@ body {
   border-radius: 50%;
   border: 1px solid lightgray;
 }
+
+.student-name {
+  width: 100%;
+  font-weight: 800;
+  font-family: 'Raleway', sans-serif;
+}
+
+.expand-btn {
+  cursor: pointer;
+  color: gray;
+}
+
+.expand-btn:hover {
+  color: black;
+}

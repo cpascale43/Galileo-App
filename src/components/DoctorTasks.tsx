@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { Task } from "../doctor.model";
+import ExpandIcon from "./ExpandIcon";
 
 interface DoctorTaskProps {
   id: string;
@@ -18,7 +19,6 @@ const DoctorTasks: React.FC<DoctorTaskProps> = (props) => {
   const expandHandler = async (id: string) => {
     setVisible(!visible);
     let filteredTasks = props.todos.filter((task) => task.owner === id);
-    filteredTasks = filteredTasks;
     setTasks(filteredTasks);
   };
 
@@ -26,20 +26,15 @@ const DoctorTasks: React.FC<DoctorTaskProps> = (props) => {
     <div className="row">
       <div className="col d-flex flex-column justify-content-between">
         <ul className="p-3">
-          {visible && tasks
+          {visible && tasks 
             ? tasks.map((task: Task) => (
-                <li key={task.task_id}>{task.task_id}</li>
+                <li key={task.task_id}><p>{task.task_id}</p></li>
               ))
             : null}
         </ul>
       </div>
       <div className="col d-flex flex-column align-items-end">
-        <button
-          className="btn btn-secondary align-bottom"
-          onClick={expandHandler.bind(null, props.id)}
-        >
-          Expand
-        </button>
+        <ExpandIcon id={props.id} onExpand={expandHandler} />
       </div>
     </div>
   );

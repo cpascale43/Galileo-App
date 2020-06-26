@@ -2,7 +2,8 @@ import React, { useRef, useState } from "react";
 
 interface NewTodoProps {
   //   onAddTodo: (todoText: string) => void;
-  getDoctors: (todoText: string) => Promise<any>;
+  getDoctors: (todoText: string) => void;
+  // onCount: () => void;
 }
 
 const NewTodo: React.FC<NewTodoProps> = (props) => {
@@ -16,6 +17,7 @@ const NewTodo: React.FC<NewTodoProps> = (props) => {
       setError(true);
       return;
     }
+    // props.onCount();
     props.getDoctors(enteredText);
   };
 

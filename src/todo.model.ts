@@ -5,3 +5,9 @@ export interface Todo {
   degree: string;
   dob: string;
 }
+
+export interface Task {
+  task_id: string;
+  owner: string;
+  priority: string;
+}

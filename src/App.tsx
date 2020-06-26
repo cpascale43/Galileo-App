@@ -1,24 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 import TodoList from "./components/TodoList";
 import NewTodo from "./components/NewTodo";
-import { Todo } from "./todo.model";
+import { Todo, Task } from "./todo.model";
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [doctors, setDoctors] = useState<Todo[]>([]);
+  let [count, setCount] = useState(0);
 
-  async function getDoctors(text: string) {
-    const { data } = await axios.get(
-      "https://testapi.io/api/akirayoglu/0/reference/getDoctors"
-    );
-    console.log("raw data", data);
-    let docsArr = data.filter(
+  // Prevents infinite API calls
+  const fetchData = useCallback(async () => {
+    try {
+      const { data } = await axios.get(
+        "https://testapi.io/api/akirayoglu/0/reference/getDoctors"
+      );
+      setTodos(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  function getDoctors(text: string) {
+    let docsArr = todos.filter(
       (doc: Todo) =>
         doc.first_name.toLowerCase().includes(text.toLowerCase()) ||
         doc.last_name.toLowerCase().includes(text.toLowerCase())
     );
-    setTodos((prevTodos) => [...prevTodos, ...docsArr]);
+
+    setDoctors([...new Set(doctors.concat(docsArr))]);
   }
 
   // const todoDeleteHandler = (todoId: string) => {
@@ -26,6 +41,11 @@ function App() {
   //     return prevTodos.filter((todo) => todo.doctor_id !== todoId);
   //   });
   // };
+
+  // const countHandler = () => {
+  //   setCount(count++)
+  //   console.log(count)
+  // }
 
   async function todoExpandHandler(id: string) {
     const { data } = await axios.get(
@@ -39,7 +59,7 @@ function App() {
       <div className="app-container">
         <div className="container p-5">
           <NewTodo getDoctors={getDoctors} />
-          <TodoList onExpandTodo={todoExpandHandler} items={todos} />
+          <TodoList onExpandTodo={todoExpandHandler} items={doctors} />
         </div>
       </div>
     </div>

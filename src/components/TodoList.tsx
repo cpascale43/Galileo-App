@@ -37,7 +37,7 @@ const TodoList: React.FC<TodoListProps> = (props) => {
             <div className="col-2">
               <span>Degree: {todo.degree}</span>
             </div>
-            <div className="col">
+            <div className="col-2">
               <span>Date of Birth: {todo.dob}</span>
             </div>
           </div>

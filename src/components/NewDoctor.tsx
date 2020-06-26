@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 
 interface NewDoctorProps {
   getDoctors: (todoText: string) => void;
+  getAllDoctors: () => void;
 }
 
 const NewDoctor: React.FC<NewDoctorProps> = (props) => {
@@ -16,11 +17,12 @@ const NewDoctor: React.FC<NewDoctorProps> = (props) => {
     props.getDoctors(enteredText);
   };
 
+  const onClickHandler = () => {
+    props.getAllDoctors()
+  }
+
   return (
-    <form
-      className='pb-3'
-      onSubmit={onSubmitHandler}
-    >
+    <form className="pb-3" onSubmit={onSubmitHandler}>
       <div className="form-group">
         <label htmlFor="todo-text">Find a Provider</label>
         <input
@@ -33,6 +35,13 @@ const NewDoctor: React.FC<NewDoctorProps> = (props) => {
       </div>
       <button className="btn btn-primary btn-block" type="submit">
         Search by provider name
+      </button>
+      <button
+        onClick={onClickHandler}
+        className="btn btn-secondary btn-block"
+        type="button"
+      >
+        View all
       </button>
     </form>
   );

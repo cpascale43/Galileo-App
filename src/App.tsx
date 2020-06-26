@@ -38,21 +38,17 @@ function App() {
     );
 
     setDoctors([...new Set(doctors.concat(docsArr))]);
-    console.log(doctors)
-    console.log(taskData)
   }
 
-  // const todoDeleteHandler = (todoId: string) => {
-  //   setDoctorData((prevTodos) => {
-  //     return prevTodos.filter((todo) => todo.doctor_id !== todoId);
-  //   });
-  // };
+  function getAllDoctors() {
+    setDoctors(doctorData)
+  }
 
   return (
     <div className="App">
       <div className="app-container">
         <div className="container p-5">
-          <NewDoctor getDoctors={getDoctors} />
+          <NewDoctor getDoctors={getDoctors} getAllDoctors={getAllDoctors} />
           <DoctorList providers={doctors} todos={taskData} />
         </div>
       </div>

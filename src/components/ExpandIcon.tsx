@@ -9,7 +9,7 @@ interface ExpandIconProps {
 const ExpandIcon: React.FC<ExpandIconProps> = (props) => {
   return (
       <AddIcon
-        className="expand-btn align-top"
+        className="expand-btn"
         onClick={props.onExpand.bind(null, props.id)}
         fontSize="large"
       />

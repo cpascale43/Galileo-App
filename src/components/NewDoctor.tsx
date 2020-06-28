@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 
 interface NewDoctorProps {
-  getDoctors: (todoText: string) => void;
+  getDoctors: (providerText: string) => void;
   getAllDoctors: () => void;
 }
 
@@ -24,11 +24,11 @@ const NewDoctor: React.FC<NewDoctorProps> = (props) => {
   return (
     <form className="pb-3" onSubmit={onSubmitHandler}>
       <div className="form-group">
-        <label htmlFor="todo-text">Find a Provider</label>
+        <label htmlFor="provider-text">Find a Provider</label>
         <input
           className="form-control"
           type="text"
-          id="todo-text"
+          id="provider-text"
           aria-describedby="searchProviders"
           ref={textInputRef}
         />

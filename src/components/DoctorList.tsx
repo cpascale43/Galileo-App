@@ -35,7 +35,7 @@ const DoctorList: React.FC<DoctorListProps> = (props) => {
               />
             </div>
             <div className="col">
-              <h1 className="student-name">
+              <h1 className="doctor-name">
                 {doc.first_name} {doc.last_name}
               </h1>
               <p>Degree: {doc.degree}</p>

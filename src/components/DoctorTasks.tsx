@@ -20,6 +20,7 @@ const DoctorTasks: React.FC<DoctorTaskProps> = (props) => {
     setVisible(!visible);
     let filteredTasks = props.todos.filter((task) => task.owner === id);
     setTasks(filteredTasks);
+    console.log(tasks)
   };
 
   return (

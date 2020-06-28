@@ -41,7 +41,7 @@ function App() {
   }
 
   function getAllDoctors() {
-    setDoctors(doctorData)
+    setDoctors(doctorData);
   }
 
   return (

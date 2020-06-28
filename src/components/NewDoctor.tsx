@@ -24,7 +24,7 @@ const NewDoctor: React.FC<NewDoctorProps> = (props) => {
   return (
     <form className="pb-3" onSubmit={onSubmitHandler}>
       <div className="form-group">
-        <label htmlFor="provider-text">Find a Provider</label>
+        <label htmlFor="provider-text"><h2 className="raleway-bold">Find a Provider</h2></label>
         <input
           className="form-control"
           type="text"

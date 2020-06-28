@@ -20,8 +20,11 @@ const DoctorTasks: React.FC<DoctorTaskProps> = (props) => {
     setVisible(!visible);
     let filteredTasks = props.todos.filter((task) => task.owner === id);
     setTasks(filteredTasks);
-    console.log(tasks)
   };
+
+  const cleanStr = (str: string) => {
+    return str[0].toUpperCase() + str.slice(1)
+  }
 
   return (
     <div className="row">
@@ -29,7 +32,7 @@ const DoctorTasks: React.FC<DoctorTaskProps> = (props) => {
         <ul className="p-3">
           {visible && tasks 
             ? tasks.map((task: Task) => (
-                <li key={task.task_id}><p>{task.task_id}</p></li>
+                <li key={task.task_id}>{cleanStr(task.task_id)}</li>
               ))
             : null}
         </ul>
